@@ -49,9 +49,9 @@ public class LivrariaController {
 		}
 
 		List<Livro> listaLivros = Arrays.asList(restTemplate.getForObject("https://bibliapp.herokuapp.com/api/books", Livro[].class));
-		for (Livro liv : listaLivros) {
-			liv.setAutor(autores.get(liv.getAuthorId()));
-		}
+//		for (Livro liv : listaLivros) {
+//			liv.setAutor(autores.get(liv.getAuthorId()));
+//		}
 		return ResponseEntity.ok(listaLivros);
 	}
 
@@ -86,8 +86,6 @@ public class LivrariaController {
 	@PostMapping("/editar")
 	public String editar(Model model, @ModelAttribute("livro") Livro livro) {
 		try {
-			System.out.println(livro.getIsbn());
-			System.out.println(livro.getId());
 			HttpEntity<Livro> request = new HttpEntity<>(
 					new Livro(livro.getId(), livro.getTitle(), livro.getIsbn(), livro.getAuthorId()));
 			restTemplate.put("https://bibliapp.herokuapp.com/api/books", request);

@@ -16,7 +16,7 @@
 	$(document).ready(function () {
 		$.ajax({  
 	         type: "GET",  
-	         url: "http://localhost:8083/api/buscar",    
+	         url: "https://bibliapp.herokuapp.com/api/books",    
 	         dataType: "json", 
 	         success: function (data) {  
 	               $.each(data, function(i,item){
@@ -25,7 +25,7 @@
 	                     "<td>" + item.title + "</td>" +
 	                     "<td>" + item.isbn + "</td>" +
 	                     "<td>" + item.authorId + "</td>" +
-	                     "<td>" + item.autor.nomeCompleto + "</td>" +
+	                    
 	                     "<td><a href='/api/edicao/"+item.id+"'>Editar</a> || <a href='/api/deletar/"+item.id+"'>Deletar</a>" + "</td>" +
  	                     "</tr>";						 
 	                   
@@ -53,7 +53,6 @@
 				<th>Título</th>
 				<th>ISBN</th>
 				<th>Autor Id</th>
-				<th>Autor</th>
 				<th>Opções</th>
 			</tr>
 		</thead>

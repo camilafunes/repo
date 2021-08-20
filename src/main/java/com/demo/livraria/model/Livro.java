@@ -9,7 +9,6 @@ public class Livro implements Serializable {
 	private Integer id;
 	private String isbn;
 	private Integer authorId;
-	private Autor autor;
 
 	public Livro() {
 		super();
@@ -52,19 +51,14 @@ public class Livro implements Serializable {
 	}
 
 	public String getIsbn() {
+		if(isbn == null) {
+			return "00";
+		}
 		return isbn;
 	}
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
-	}
-
-	public Autor getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Autor autor) {
-		this.autor = autor;
 	}
 
 }
