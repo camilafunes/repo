@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Editar Livro</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container" width="60%" align="left">
+		<h1 align="center">Editar Livro</h1>
+
+		<br>
+		<form th:action="@{/api/editar}" th:object="${livro}" method="POST">
+
+			<div class="form-group">
+				<label for="titulo">Título</label> <input type="text"
+					class="form-control" th:field="*{title}" id="titulo"
+					placeholder="Insira o título do livro" />
+			</div>
+
+			<div class="form-group">
+				<label for="isbn">ISBN</label> <input type="text"
+					class="form-control" th:field="*{isbn}" id=isbn
+					placeholder="Insira o ISBN do livro" />
+			</div>
+
+			<div class="form-group">
+				<label for="autor">ID Autor</label> <input type="text"
+					class="form-control" th:field="*{authorId}" id="autor"
+					placeholder="Insira o ID do autor" />
+			</div>
+			<button type="submit" class="btn btn-primary">Editar</button>
+			<a th:href="@{/api/listar}" class="btn btn-primary">Voltar </a>
+		</form>
+
+		<br />
+		<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+	</div>
+</body>
+</html>

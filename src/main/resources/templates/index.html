@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Livraria</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>	
+</head>
+<body>
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$.ajax({  
+	         type: "GET",  
+	         url: "http://localhost:8083/api/buscar",    
+	         dataType: "json", 
+	         success: function (data) {  
+	               $.each(data, function(i,item){
+	                     var row = "<tr>"+
+	                     "<td>" + item.id + "</td>" + 
+	                     "<td>" + item.title + "</td>" +
+	                     "<td>" + item.isbn + "</td>" +
+	                     "<td>" + item.authorId + "</td>" +
+	                     "<td>" + item.autor.nomeCompleto + "</td>" +
+	                     "<td><a href='/api/edicao/"+item.id+"'>Editar</a> || <a href='/api/deletar/"+item.id+"'>Deletar</a>" + "</td>" +
+ 	                     "</tr>";						 
+	                   
+ 	                     $("#listaLivros2>tbody").append(row);
+	                }); 	
+	              
+				$('#listaLivros2').dataTable( {
+				  "searching": true
+				});
+	   	 	},  
+	    });  
+		 
+	}); 
+	</script>
+
+<div class="container"  width="80%" align="center">
+<h1 align="center">Livraria</h1>
+<div align="left"> <a th:href="@{/api/cadastro}"> Cadastrar Livro</a> </div>
+
+<br >
+	<table id="listaLivros2" border="1"  class="display" >
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Título</th>
+				<th>ISBN</th>
+				<th>Autor Id</th>
+				<th>Autor</th>
+				<th>Opções</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+</table>
+
+</div>
+	
+ 
+</body>
+</html>
